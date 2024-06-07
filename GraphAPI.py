@@ -32,7 +32,7 @@ headers = {
 }
 
 # Define the date range (previous day)
-cst = pytz.timezone('CST6CDT')
+cst = pytz.timezone('America/Chicago')  # Updated to correct timezone name
 end_date = datetime.now(cst).replace(hour=0, minute=0, second=0, microsecond=0)
 start_date = end_date - timedelta(days=1)
 
@@ -50,10 +50,10 @@ meeting_rooms = []
 for room in rooms_data['value']:
     room_name = room['displayName']
     room_capacity = room.get('capacity', 'Unknown')
-    room_id = room['id']
+    room_id = room['emailAddress']  # Use email address for calendar access
 
     # Get the events for each room for the previous day
-    events_url = f"https://graph.microsoft.com/v1.0/places/{room_id}/calendarView?startDateTime={start_date_str}&endDateTime={end_date_str}"
+    events_url = f"https://graph.microsoft.com/v1.0/users/{room_id}/calendarView?startDateTime={start_date_str}&endDateTime={end_date_str}"
     events_response = requests.request("GET", events_url, headers=headers, verify=False)
     events_response.raise_for_status()
     events_data = events_response.json()
@@ -67,9 +67,7 @@ for room in rooms_data['value']:
             'event_end': event['end']['dateTime']
         })
 
-
 #Step 3: Get the Number of Attendees from Verge Sense API
-# Replace with your Verge Sense API key
 vs_api_key = "<vs_api_key>"
 
 vs_headers = {
