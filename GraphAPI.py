@@ -1,6 +1,5 @@
 import requests
 import urllib3
-import json
 from datetime import datetime, timedelta
 import pytz
 import pandas as pd
@@ -8,96 +7,85 @@ import pandas as pd
 # Disable insecure warning messages
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Replace with your tenant ID, client ID, and client secret
-scope = "https://graph.microsoft.com/.default"
+# Replace with your actual credentials
+tenant_id = "your_tenant_id"
+client_id = "your_client_id"
+client_secret = "your_client_secret"
+vs_api_key = "your_verge_sense_api_key"
 
-def get_access_token():
-    token_url = f"https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token"
-    token_payload = {
-        "grant_type": "client_credentials",
-        "client_id": client_id,
-        "client_secret": client_secret,
-        "scope": scope
-    }
-    # Requesting Microsoft Graph API access token
-    token_response = requests.request("POST", token_url, data=token_payload, verify=False)
-    token_response.raise_for_status()  # Raise an exception if the request was unsuccessful
-    token_data = token_response.json()
-    return token_data.get('access_token')
+# Get access token
+token_url = f"https://login.microsoftonline.com/{tenant_id}/oauth2/v2.0/token"
+token_payload = {
+    "grant_type": "client_credentials",
+    "client_id": client_id,
+    "client_secret": client_secret,
+    "scope": "https://graph.microsoft.com/.default"
+}
+token_response = requests.post(token_url, data=token_payload, verify=False)
+token_response.raise_for_status()
+access_token = token_response.json().get('access_token')
 
-access_token = get_access_token()
-print(access_token)
-
-# Step 2: Get the List of Meeting Rooms and Their Capacities
+# Get rooms
 headers = {
     'Authorization': f'Bearer {access_token}',
     'Content-Type': 'application/json'
 }
-
-# Get the list of meeting rooms
 rooms_url = "https://graph.microsoft.com/v1.0/places/microsoft.graph.room"
-rooms_response = requests.request("GET", rooms_url, headers=headers, verify=False)
+rooms_response = requests.get(rooms_url, headers=headers, verify=False)
 rooms_response.raise_for_status()
-rooms_data = rooms_response.json()
+rooms = rooms_response.json()['value']
 
-print("Printing rooms_data")
-print(rooms_data)
-
-# Using the first room for this script
-first_room = rooms_data['value'][0]
-room_name = first_room['displayName']
-room_capacity = first_room.get('capacity', 'Unknown')
-room_email = first_room['emailAddress']
-
-print(f"Using room: {room_name}, Capacity: {room_capacity}")
-
-# Define the date range (previous day)
-cst = pytz.timezone('America/Chicago')  # Updated to correct timezone name
+# Set date range
+cst = pytz.timezone('America/Chicago')
 end_date = datetime.now(cst).replace(hour=0, minute=0, second=0, microsecond=0)
 start_date = end_date - timedelta(days=1)
 
-start_date_str = start_date.isoformat()
-end_date_str = end_date.isoformat()
+meeting_data = []
 
-# Get the events for the room for the previous day
-events_url = f"https://graph.microsoft.com/v1.0/users/{room_email}/calendarView?startDateTime={start_date_str}&endDateTime={end_date_str}"
-events_response = requests.request("GET", events_url, headers=headers, verify=False)
-events_response.raise_for_status()
-events_data = events_response.json()
+# Process each room
+for room in rooms:
+    room_id = room['id']
+    room_name = room['displayName']
+    room_capacity = room.get('capacity', 'Unknown')
 
-print("Printing events_data")
-print(events_data)
+    # Get room events
+    events_url = f"https://graph.microsoft.com/v1.0/places/{room_id}/calendarView"
+    params = {
+        'startDateTime': start_date.isoformat(),
+        'endDateTime': end_date.isoformat(),
+        '$select': 'id,subject,start,end,attendees'
+    }
+    events_response = requests.get(events_url, headers=headers, params=params, verify=False)
+    events_response.raise_for_status()
+    events = events_response.json()['value']
 
-meeting_rooms = []
+    # Process each event
+    for event in events:
+        event_id = event['id']
+        event_start = event['start']['dateTime']
+        event_end = event['end']['dateTime']
+        invited_attendees = len(event.get('attendees', []))
 
-for event in events_data['value']:
-    meeting_rooms.append({
-        'room_name': room_name,
-        'room_capacity': room_capacity,
-        'event_start': event['start']['dateTime'],
-        'event_end': event['end']['dateTime'],
-        'event_id': event['id']
-    })
+        # Get meeting attendance from Verge Sense API
+        vs_headers = {
+            'Accept': 'application/json',
+            'vs-api-key': vs_api_key
+        }
+        attendance_url = f"https://api.vergesense.com/v1/meetings/{event_id}/attendance"
+        attendance_response = requests.get(attendance_url, headers=vs_headers, verify=False)
+        attendance_response.raise_for_status()
+        actual_attendees = attendance_response.json().get('attendees', 'Unknown')
 
-# Step 3: Get the Number of Attendees from Verge Sense API
-vs_api_key = "<vs_api_key>"  # Replace with your Verge Sense API key
+        # Add meeting data
+        meeting_data.append({
+            'room_name': room_name,
+            'room_capacity': room_capacity,
+            'event_start': event_start,
+            'event_end': event_end,
+            'invited_attendees': invited_attendees,
+            'actual_attendees': actual_attendees
+        })
 
-vs_headers = {
-    'Accept': 'application/json',
-    'vs-api-key': vs_api_key
-}
-
-# Add attendance data to meeting rooms
-for meeting in meeting_rooms:
-    event_id = meeting['event_id']
-    vs_attendance_url = f"https://api.vergesense.com/v1/meetings/{event_id}/attendance"
-    
-    vs_response = requests.request("GET", vs_attendance_url, headers=vs_headers, verify=False)
-    vs_response.raise_for_status()
-    vs_data = vs_response.json()
-    
-    meeting['attendees'] = vs_data.get('attendees', 'Unknown')
-
-# Display the results in a table format
-df = pd.DataFrame(meeting_rooms, columns=['room_name', 'room_capacity', 'event_start', 'event_end', 'attendees'])
+# Create and display DataFrame
+df = pd.DataFrame(meeting_data)
 print(df)
