@@ -25,7 +25,7 @@ token_payload = {
     "client_secret": client_secret,
     "scope": "https://graph.microsoft.com/.default"
 }
-token_response = requests.post(token_url, data=token_payload, verify=False)
+token_response = requests.request("POST", token_url, data=token_payload, verify=False)
 token_response.raise_for_status()
 access_token = token_response.json().get('access_token')
 
@@ -35,7 +35,7 @@ headers = {
     'Content-Type': 'application/json'
 }
 rooms_url = "https://graph.microsoft.com/v1.0/places/microsoft.graph.room"
-rooms_response = requests.get(rooms_url, headers=headers, verify=False)
+rooms_response = requests.request("GET", rooms_url, headers=headers, verify=False)
 rooms_response.raise_for_status()
 rooms = rooms_response.json()['value']
 
@@ -69,7 +69,7 @@ for room in rooms:
     }
     
     try:
-        events_response = requests.get(events_url, headers=headers, params=params, verify=False)
+        events_response = requests.request("GET", events_url, headers=headers, params=params, verify=False)
         events_response.raise_for_status()
         events = events_response.json()['value']
     except requests.exceptions.HTTPError as e:
@@ -102,7 +102,7 @@ for room in rooms:
             }
             attendance_url = f"https://api.vergesense.com/v1/meetings/{event_id}/attendance"
             try:
-                attendance_response = requests.get(attendance_url, headers=vs_headers, verify=False)
+                attendance_response = requests.request("GET", attendance_url, headers=vs_headers, verify=False)
                 attendance_response.raise_for_status()
                 actual_attendees = attendance_response.json().get('attendees', 'Unknown')
             except requests.exceptions.RequestException as e:
