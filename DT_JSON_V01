@@ -1,0 +1,897 @@
+{
+  "dashboardMetadata": {
+    "name": "Raritan PDU Monitoring",
+    "shared": true,
+    "sharingDetails": {
+      "linkShared": true,
+      "published": true
+    },
+    "dashboardFilter": {
+      "timeframe": "l_2_HOURS"
+    }
+  },
+  "tiles": [
+    {
+      "name": "PDU Overview",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 1710,
+        "height": 38
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Current Load Status",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 0,
+        "width": 342,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## Current Load Status"
+    },
+    {
+      "name": "Current Ampere",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 0,
+        "width": 342,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Current Ampere",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "SINGLE_VALUE",
+          "series": [
+            {
+              "metric": "raritan_pdu_current_ampere",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Current Ampere",
+      "thresholds": [
+        {
+          "rules": [
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 0,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 8,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#f5d30f",
+              "enabled": true,
+              "value": 10,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#dc172a",
+              "enabled": true,
+              "value": 12,
+              "position": "BELOW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Power",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 342,
+        "width": 342,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## Power Metrics"
+    },
+    {
+      "name": "Active Power (W)",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 342,
+        "width": 342,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Active Power (W)",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "SINGLE_VALUE",
+          "series": [
+            {
+              "metric": "raritan_pdu_activepower_watt",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Active Power (W)",
+      "thresholds": [
+        {
+          "rules": [
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 0,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 1000,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#f5d30f",
+              "enabled": true,
+              "value": 1200,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#dc172a",
+              "enabled": true,
+              "value": 1440,
+              "position": "BELOW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Energy",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 684,
+        "width": 342,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## Energy Consumption"
+    },
+    {
+      "name": "Total Energy (Wh)",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 684,
+        "width": 342,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Total Energy (Wh)",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "SINGLE_VALUE",
+          "series": [
+            {
+              "metric": "raritan_pdu_activeenergy_watthour_total",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Total Energy (Wh)"
+    },
+    {
+      "name": "Electrical Quality",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1026,
+        "width": 342,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## Electrical Quality"
+    },
+    {
+      "name": "Voltage (V)",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 1026,
+        "width": 342,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Voltage (V)",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TIMESERIES",
+          "series": [
+            {
+              "metric": "raritan_pdu_voltage_volt",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Voltage (V)",
+      "thresholds": [
+        {
+          "rules": [
+            {
+              "valueFormat": null,
+              "color": "#dc172a",
+              "enabled": true,
+              "value": 110,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 110,
+              "position": "ABOVE"
+            },
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 125,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#dc172a",
+              "enabled": true,
+              "value": 125,
+              "position": "ABOVE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PDU Overview",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1368,
+        "width": 342,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## PDU Details"
+    },
+    {
+      "name": "PDU Information",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 1368,
+        "width": 342,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "PDU Information",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TABLE",
+          "series": [
+            {
+              "metric": "raritan_pdu_inletrating",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduid",
+                  "values": [],
+                  "entityDimension": false
+                },
+                {
+                  "id": "1",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                },
+                {
+                  "id": "2",
+                  "name": "inletid",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "PDU Information"
+    },
+    {
+      "name": "Power Factor & Frequency",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 380,
+        "left": 0,
+        "width": 684,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## Power Quality Metrics"
+    },
+    {
+      "name": "Power Factor",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 0,
+        "width": 342,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Power Factor",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TIMESERIES",
+          "series": [
+            {
+              "metric": "raritan_pdu_powerfactor",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Power Factor",
+      "thresholds": [
+        {
+          "rules": [
+            {
+              "valueFormat": null,
+              "color": "#dc172a",
+              "enabled": true,
+              "value": 0.85,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#f5d30f",
+              "enabled": true,
+              "value": 0.9,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 0.9,
+              "position": "ABOVE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Line Frequency (Hz)",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 342,
+        "width": 342,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Line Frequency (Hz)",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TIMESERIES",
+          "series": [
+            {
+              "metric": "raritan_pdu_linefrequency_hertz",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Line Frequency (Hz)",
+      "thresholds": [
+        {
+          "rules": [
+            {
+              "valueFormat": null,
+              "color": "#dc172a",
+              "enabled": true,
+              "value": 59.7,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 59.7,
+              "position": "ABOVE"
+            },
+            {
+              "valueFormat": null,
+              "color": "#7dc540",
+              "enabled": true,
+              "value": 60.3,
+              "position": "BELOW"
+            },
+            {
+              "valueFormat": null,
+              "color": "#dc172a",
+              "enabled": true,
+              "value": 60.3,
+              "position": "ABOVE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Outlet Ratings",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 380,
+        "left": 684,
+        "width": 684,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## Outlet Ratings"
+    },
+    {
+      "name": "Outlet Configuration",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 684,
+        "width": 684,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Outlet Configuration",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TABLE",
+          "series": [
+            {
+              "metric": "raritan_pdu_outletrating",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduid",
+                  "values": [],
+                  "entityDimension": false
+                },
+                {
+                  "id": "1",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                },
+                {
+                  "id": "2",
+                  "name": "outletid",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Outlet Configuration"
+    },
+    {
+      "name": "Current Utilization by PDU",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 722,
+        "left": 0,
+        "width": 1710,
+        "height": 38
+      },
+      "tileFilter": {},
+      "markdown": "## Current Utilization by PDU"
+    },
+    {
+      "name": "Current Utilization (%)",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 760,
+        "left": 0,
+        "width": 1710,
+        "height": 304
+      },
+      "tileFilter": {},
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Current Utilization (%)",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "PIE",
+          "series": [
+            {
+              "metric": "calc:service.pduutilization",
+              "aggregation": "AVG",
+              "percentile": null,
+              "type": "LINE",
+              "entityType": "PROMETHEUS",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "pduname",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {}
+      },
+      "customName": "Current Utilization (%)"
+    }
+  ],
+  "alerting": {
+    "rules": [
+      {
+        "enabled": true,
+        "name": "High Current Alert",
+        "description": "Alert when current exceeds 80% of inlet rating",
+        "triggering": true,
+        "severity": "CUSTOM_ALERT",
+        "severityLevel": "PERFORMANCE",
+        "primaryDimension": "pduname",
+        "type": "PROMETHEUS",
+        "query": {
+          "metricSelector": "raritan_pdu_current_ampere/raritan_pdu_inletrating*100 > 80",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT"
+        },
+        "metricDimensions": [
+          "pduname",
+          "inletid"
+        ],
+        "thresholds": {
+          "alertCondition": "ABOVE",
+          "violatingSamples": 3,
+          "dealertingSamples": 5
+        }
+      },
+      {
+        "enabled": true,
+        "name": "Voltage Out of Range",
+        "description": "Alert when voltage is outside acceptable range (110V-125V)",
+        "triggering": true,
+        "severity": "CUSTOM_ALERT",
+        "severityLevel": "PERFORMANCE",
+        "primaryDimension": "pduname",
+        "type": "PROMETHEUS",
+        "query": {
+          "metricSelector": "raritan_pdu_voltage_volt < 110 OR raritan_pdu_voltage_volt > 125",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT"
+        },
+        "metricDimensions": [
+          "pduname",
+          "inletid"
+        ],
+        "thresholds": {
+          "alertCondition": "ABOVE",
+          "violatingSamples": 3,
+          "dealertingSamples": 5
+        }
+      },
+      {
+        "enabled": true,
+        "name": "Power Factor Alert",
+        "description": "Alert when power factor drops below 0.85",
+        "triggering": true,
+        "severity": "CUSTOM_ALERT",
+        "severityLevel": "PERFORMANCE",
+        "primaryDimension": "pduname",
+        "type": "PROMETHEUS",
+        "query": {
+          "metricSelector": "raritan_pdu_powerfactor < 0.85",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT"
+        },
+        "metricDimensions": [
+          "pduname",
+          "inletid"
+        ],
+        "thresholds": {
+          "alertCondition": "ABOVE",
+          "violatingSamples": 3,
+          "dealertingSamples": 5
+        }
+      },
+      {
+        "enabled": true,
+        "name": "Frequency Out of Range",
+        "description": "Alert when line frequency is outside acceptable range (59.7Hz-60.3Hz)",
+        "triggering": true,
+        "severity": "CUSTOM_ALERT",
+        "severityLevel": "PERFORMANCE",
+        "primaryDimension": "pduname",
+        "type": "PROMETHEUS",
+        "query": {
+          "metricSelector": "raritan_pdu_linefrequency_hertz < 59.7 OR raritan_pdu_linefrequency_hertz > 60.3",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT"
+        },
+        "metricDimensions": [
+          "pduname",
+          "inletid"
+        ],
+        "thresholds": {
+          "alertCondition": "ABOVE",
+          "violatingSamples": 3,
+          "dealertingSamples": 5
+        }
+      }
+    ],
+    "alertingProfile": {
+      "alertConditions": {
+        "rules": [
+          {
+            "enabled": true,
+            "severity": "AVAILABILITY",
+            "severityLevel": "AVAILABILITY",
+            "triggerType": "TIME",
+            "threshold": 60000,
+            "dayOfWeek": null,
+            "timeFrom": null,
+            "timeToMinutes": null,
+            "timeFrom2": null,
+            "timeToMinutes2": null
+          },
+          {
+            "enabled": true,
+            "severity": "ERROR",
+            "severityLevel": "ERROR",
+            "triggerType": "TIME",
+            "threshold": 0,
+            "dayOfWeek": null,
+            "timeFrom": null,
+            "timeToMinutes": null,
+            "timeFrom2": null,
+            "timeToMinutes2": null
+          },
+          {
+            "enabled": true,
+            "severity": "CUSTOM_ALERT",
+            "severityLevel": "PERFORMANCE",
+            "triggerType": "TIME",
+            "threshold": 0,
+            "dayOfWeek": null,
+            "timeFrom": null,
+            "timeToMinutes": null,
+            "timeFrom2": null,
+            "timeToMinutes2": null
+          }
+        ]
+      },
+      "name": "PDU Monitoring Alert Profile",
+      "management": {
+        "autoTaggingEnabled": true,
+        "manualProblemCloseAllowed": true,
+        "notificationsEnabled": true,
+        "delayFirstNotificationByMinutes": 5,
+        "enforcementDelayMin": 0,
+        "enforcementTimeoutMin": 720,
+        "closeOnClusterDowntime": false
+      }
+    },
+    "notificationConfig": {
+      "name": "PDU Alert Notifications",
+      "alertingProfile": "PDU Monitoring Alert Profile",
+      "active": true,
+      "alertingChannel": "EMAIL",
+      "emailConfig": {
+        "receivers": ["pdu-alerts@example.com"],
+        "ccReceivers": [],
+        "bccReceivers": [],
+        "subject": "{State} - {ProblemTitle} - PDU Alert",
+        "body": "Problem detected with PDU monitoring:\n\nProblem: {ProblemTitle}\nPDU: {DimensionValue:pduname}\nID: {DimensionValue:pduid}\nSeverity: {Severity}\nStatus: {State}\n\nPlease check the PDU status immediately."
+      }
+    }
+  },
+  "calculatedMetrics": {
+    "calculatedMetric": {
+      "tsmMetricKey": "calc:service.pduutilization",
+      "name": "PDU Current Utilization",
+      "enabled": true,
+      "metricDefinition": {
+        "metric": "PROMETHEUS_QUERY",
+        "source": "(raritan_pdu_current_ampere/raritan_pdu_inletrating)*100"
+      },
+      "unit": "Percent",
+      "unitDisplayName": "%",
+      "conditions": [],
+      "dimensions": [
+        "pduname",
+        "inletid"
+      ]
+    }
+  }
+}
