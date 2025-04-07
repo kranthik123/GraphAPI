@@ -1,0 +1,981 @@
+{
+	"info": {
+		"_postman_id": "f5d8e0a1-1b2a-4c3d-8e4f-9a0b1c2d3e5f",
+		"name": "Poly VideoOS REST API (v3.7.0)",
+		"description": "Postman collection generated from Poly VideoOS REST API Reference Guide Software 3.7.0 (September 2021 | 3725-86572-007A)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Audio",
+			"item": [
+				{
+					"name": "Get Audio Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio"
+							]
+						},
+						"description": "This API provides details about the systems audio information.\nOutput: `{ \"muteLocked\": false, \"muted\": true, \"numOfMicsConnected\": 1, \"volume\": 62 }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform Audio Action (DTMF)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"playDTMF\",\n  \"dtmfChar\": \"1\",\n  \"speaker\": \"SPEAKER_BOTH\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio"
+							]
+						},
+						"description": "This API performs an audio action on the system related to pressed DTMF characters.\nActions: “start”, “playDTMF”, “playTestTone”, “stopPlayingTestTone”, “itpSegmentDetection”.\nSpeakers: “SPEAKER_LEFT”, “SPEAKER_RIGHT”, “SPEAKER_BOTH”.\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform Acoustic Fence Action",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"start\",\n  \"dtmfChar\": \"\",\n  \"speaker\": \"SPEAKER_BOTH\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio/acousticfence",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio",
+								"acousticfence"
+							]
+						},
+						"description": "This API performs acoustic fence actions and broadcasts audio fence indicators.\nActions: “start”, “playDTMF”, “playTestTone”, “stopPlayingTestTone”, “itpSegmentDetection”.\nSpeakers: “SPEAKER_LEFT”, “SPEAKER_RIGHT”, “SPEAKER_BOTH”.\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Audio Meters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio/audiometers",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio",
+								"audiometers"
+							]
+						},
+						"description": "This API provides system audio meter information.\nOutput: Array of audio meter objects.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Microphones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio/microphones",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio",
+								"microphones"
+							]
+						},
+						"description": "This API provides the list of microphones with relevant information for each one.\nOutput: Array of microphone objects.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mute Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio/muted",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio",
+								"muted"
+							]
+						},
+						"description": "This API provides the microphone mute status.\nOutput: `<boolean>`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Mute Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "true",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio/muted",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio",
+								"muted"
+							]
+						},
+						"description": "This API performs an audio action on the system to mute or unmute microphones.\nInput: `<boolean>` (True mutes, False unmutes)\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Volume Level",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio/volume",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio",
+								"volume"
+							]
+						},
+						"description": "This API provides information on the microphone volume level.\nOutput: `<integer>`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Volume Level",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "50",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/audio/volume",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"audio",
+								"volume"
+							]
+						},
+						"description": "This API performs an audio action on the system to set volume level.\nInput: `<integer>`\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				}
+			],
+			"description": "Audio related commands"
+		},
+		{
+			"name": "Calendar",
+			"item": [
+				{
+					"name": "Get Calendar Server Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/calendar",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"calendar"
+							]
+						},
+						"description": "This API provides the status of the meetings calendar server.\nOutput: `{ Status: \"ONLINE\" | \"OFFLINE\" | ... }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Calendar Meetings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/calendar/meetings?number=10",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"calendar",
+								"meetings"
+							],
+							"query": [
+								{
+									"key": "number",
+									"value": "10",
+									"description": "(Optional) Max number of meetings. Cannot be combined with start/end."
+								},
+								{
+									"key": "start",
+									"value": null,
+									"description": "(Optional) Start time (epoch seconds). Default: current time.",
+									"disabled": true
+								},
+								{
+									"key": "end",
+									"value": null,
+									"description": "(Optional) End time (epoch seconds). Default: 24 hours after start.",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This API provides a list of meetings in the calendar. Query parameters may specify either a start and end time range, or a maximum number of upcoming events from the current time. The default query is to return all upcoming meetings within 24 hours from the current time.\nOutput: Array of meeting objects.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Meeting Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/calendar/meetings/:meetingId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"calendar",
+								"meetings",
+								":meetingId"
+							],
+							"variable": [
+								{
+									"key": "meetingId",
+									"value": "unique_meeting_id",
+									"description": "The unique meeting identifier to retrieve from the calendar."
+								}
+							]
+						},
+						"description": "This API provides details for a single meeting in the calendar.\nOutput: Single meeting object.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Dial Calendar Meeting",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/calendar/meetings/:meetingId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"calendar",
+								"meetings",
+								":meetingId"
+							],
+							"variable": [
+								{
+									"key": "meetingId",
+									"value": "unique_meeting_id",
+									"description": "The unique meeting identifier to dial."
+								}
+							]
+						},
+						"description": "This API dials the calendar meeting specified by meetingId.\nOutput: `{ \"connectionId\": ..., \"success\": true }`\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Discover Calendar Server",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"domain\": \"email\",\n  \"email\": \"user@example.com\",\n  \"username\": \"user\",\n  \"password\": \"password\",\n  \"userdomain\": \"example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/calendar/discover",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"calendar",
+								"discover"
+							]
+						},
+						"description": "This API retrieves information about the calendar server based on the specified e-mail address and credentials.\nDomain: \"sip\" or \"email\".\nOutput: `{ \"error\": \"NOERROR\", \"serverUrl\": \"...\" }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				}
+			],
+			"description": "Calendar and meeting related commands"
+		},
+		{
+			"name": "Cameras",
+			"item": [
+				{
+					"name": "Get Source Selectable Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/sourceselectable",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"sourceselectable"
+							]
+						},
+						"description": "This API provides the selection availability of the near source camera.\nOutput: `true`\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Content Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/contentstatus",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"contentstatus"
+							]
+						},
+						"description": "This API provides the system content status.\nOutput: `\"CONTENT_IDLE\"`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Near Cameras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/all",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"all"
+							]
+						},
+						"description": "This API provides the index number and information for all near camera sources.\nOutput: Array of camera objects.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Near People Cameras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/people",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"people"
+							]
+						},
+						"description": "This API provides the index number and information for all near people camera sources.\nOutput: Array of people camera objects.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Near Content Cameras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/content",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"content"
+							]
+						},
+						"description": "This API provides the index number and information for all near content camera sources.\nOutput: Array of content camera objects.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Near Camera Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/:sourceID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								":sourceID"
+							],
+							"variable": [
+								{
+									"key": "sourceID",
+									"value": "1",
+									"description": "The unique identifier for the camera index."
+								}
+							]
+						},
+						"description": "This API provides information for the near camera specified by sourceID.\nOutput: Single camera object.\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Move Specific Near Camera",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"moveStart\",\n  \"direction\": \"MOVE_LEFT\",\n  \"message\": \"\",\n  \"withImage\": \"No\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/:sourceID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								":sourceID"
+							],
+							"variable": [
+								{
+									"key": "sourceID",
+									"value": "1",
+									"description": "The unique identifier for the camera index."
+								}
+							]
+						},
+						"description": "This API performs the move operation for the near camera specified by sourceID.\nActions: “moveStart”, “moveStop”, “store”, “clear”, “activate”.\nDirections: “MOVE_LEFT”, “MOVE_RIGHT”, “MOVE_UP”, “MOVE_DOWN”, “MOVE_ZOOMIN”, “MOVE_ZOOMOUT”, “MOVE_FOCUSNEAR”, “MOVE_FOCUSFAR”.\nMessages: “LeftCamera”, “RightCamera”, “BothCamera”.\nWithImage: “Yes”, “No”.\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Selected Near People Camera",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/selectedpeople",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"selectedpeople"
+							]
+						},
+						"description": "This API provides information for the selected near people camera source.\nOutput: Selected people camera object.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Move Selected Near People Camera",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"moveStart\",\n  \"direction\": \"MOVE_RIGHT\",\n  \"message\": \"\",\n  \"withImage\": \"No\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/selectedpeople",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"selectedpeople"
+							]
+						},
+						"description": "This API performs the move operation for the selected near people camera source.\n(See 'Move Specific Near Camera' for body details)\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Selected Near Content Camera",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/selectedcontent",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"selectedcontent"
+							]
+						},
+						"description": "This API provides information for the selected near content camera source.\nOutput: Selected content camera object.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Move Selected Near Content Camera",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"moveStart\",\n  \"direction\": \"MOVE_ZOOMIN\",\n  \"message\": \"\",\n  \"withImage\": \"No\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/selectedcontent",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"selectedcontent"
+							]
+						},
+						"description": "This API performs the move operation for the selected near content camera source.\n(See 'Move Specific Near Camera' for body details)\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Near Camera Presets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/presets/all",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"presets",
+								"all"
+							]
+						},
+						"description": "This API provides the list of near camera presets.\nOutput: Array of preset objects.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Near Camera Preset",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/presets/:index",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"presets",
+								":index"
+							],
+							"variable": [
+								{
+									"key": "index",
+									"value": "1",
+									"description": "The unique identifier of the near camera preset index."
+								}
+							]
+						},
+						"description": "This API provides the near camera presets information for a specified camera stored in the index.\nOutput: Single preset object.\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Specific Near Camera Preset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"store\",\n  \"direction\": \"\",\n  \"message\": \"\",\n  \"withImage\": \"Yes\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/presets/:index",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"presets",
+								":index"
+							],
+							"variable": [
+								{
+									"key": "index",
+									"value": "1",
+									"description": "The unique identifier of the near camera preset index."
+								}
+							]
+						},
+						"description": "This API updates the near camera presets information for a specified camera stored in the index.\nActions: “moveStart”, “moveStop”, “store”, “clear”, “activate”.\n(See 'Move Specific Near Camera' for other body details)\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Near Camera Position",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"camPosition\": {\n    \"pan\": 0,\n    \"tilt\": 0,\n    \"zoom\": 0\n  },\n  \"relative\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/near/position/:sourceID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"near",
+								"position",
+								":sourceID"
+							],
+							"variable": [
+								{
+									"key": "sourceID",
+									"value": "SELECTED_PEOPLE",
+									"description": "The available value is SELECTED_PEOPLE."
+								}
+							]
+						},
+						"description": "This API performs the move operation for the selected near camera source, using the exact given coordinates or the coordinates as an offset from the current position.\nPan/Tilt/Zoom range: -50000 to +50000.\nRelative: True sets exact coordinates, False sets offset.\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Far Cameras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/far/all",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"far",
+								"all"
+							]
+						},
+						"description": "This API provides the list and information for all far camera sources.\nOutput: Array of far camera objects.\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Selected Far People Camera",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/far/selectedpeople",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"far",
+								"selectedpeople"
+							]
+						},
+						"description": "This API provides information for the selected far people camera source.\nOutput: Selected far people camera object.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Move Selected Far People Camera",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"moveStart\",\n  \"direction\": \"MOVE_LEFT\",\n  \"message\": \"\",\n  \"withImage\": \"No\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/far/selectedpeople",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"far",
+								"selectedpeople"
+							]
+						},
+						"description": "This API performs the move operation for the selected far people camera source.\n(See 'Move Specific Near Camera' for body details)\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Far Camera Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/far/:sourceID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"far",
+<environment_details>
+# VSCode Visible Files
+../../../../../Poly_VideoOS_REST_API.postman_collection.json
+../../../../../Poly_VideoOS_REST_API.postman_collection.json
+Poly_VideoOS_REST_API.postman_collection.json
+
+# VSCode Open Tabs
+file1.py
+n8n-file.txt
+../../../Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json
+pdf_9122216_en-US-1.pdf
+Poly_VideoOS_REST_API.postman_collection.json
+
+# Current Time
+4/4/2025, 4:22:02 PM (America/Chicago, UTC-5:00)
+
+# Current Mode
+ACT MODE
+</environment_details>
