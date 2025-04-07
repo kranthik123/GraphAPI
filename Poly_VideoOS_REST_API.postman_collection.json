@@ -1,13 +1,14 @@
 {
 	"info": {
 		"_postman_id": "f5d8e0a1-1b2a-4c3d-8e4f-9a0b1c2d3e5f",
-		"name": "Poly VideoOS REST API (v3.7.0)",
-		"description": "Postman collection generated from Poly VideoOS REST API Reference Guide Software 3.7.0 (September 2021 | 3725-86572-007A)",
+		"name": "Poly VideoOS REST API (v3.7.0) - Complete",
+		"description": "Complete Postman collection generated from Poly VideoOS REST API Reference Guide Software 3.7.0 (September 2021 | 3725-86572-007A)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Audio",
+			"description": "Audio related commands",
 			"item": [
 				{
 					"name": "Get Audio Info",
@@ -117,7 +118,7 @@
 								"audiometers"
 							]
 						},
-						"description": "This API provides system audio meter information.\nOutput: Array of audio meter objects.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides system audio meter information.\nOutput: Array of audio meter objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -138,7 +139,7 @@
 								"microphones"
 							]
 						},
-						"description": "This API provides the list of microphones with relevant information for each one.\nOutput: Array of microphone objects.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides the list of microphones with relevant information for each one.\nOutput: Array of microphone objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -256,11 +257,11 @@
 					},
 					"response": []
 				}
-			],
-			"description": "Audio related commands"
+			]
 		},
 		{
 			"name": "Calendar",
+			"description": "Calendar and meeting related commands",
 			"item": [
 				{
 					"name": "Get Calendar Server Status",
@@ -318,7 +319,7 @@
 								}
 							]
 						},
-						"description": "This API provides a list of meetings in the calendar. Query parameters may specify either a start and end time range, or a maximum number of upcoming events from the current time. The default query is to return all upcoming meetings within 24 hours from the current time.\nOutput: Array of meeting objects.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides a list of meetings in the calendar. Query parameters may specify either a start and end time range, or a maximum number of upcoming events from the current time. The default query is to return all upcoming meetings within 24 hours from the current time.\nOutput: Array of meeting objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -347,7 +348,7 @@
 								}
 							]
 						},
-						"description": "This API provides details for a single meeting in the calendar.\nOutput: Single meeting object.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides details for a single meeting in the calendar.\nOutput: Single meeting object (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -416,11 +417,11 @@
 					},
 					"response": []
 				}
-			],
-			"description": "Calendar and meeting related commands"
+			]
 		},
 		{
 			"name": "Cameras",
+			"description": "Camera related commands",
 			"item": [
 				{
 					"name": "Get Source Selectable Status",
@@ -482,7 +483,7 @@
 								"all"
 							]
 						},
-						"description": "This API provides the index number and information for all near camera sources.\nOutput: Array of camera objects.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides the index number and information for all near camera sources.\nOutput: Array of camera objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -504,7 +505,7 @@
 								"people"
 							]
 						},
-						"description": "This API provides the index number and information for all near people camera sources.\nOutput: Array of people camera objects.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides the index number and information for all near people camera sources.\nOutput: Array of people camera objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -526,7 +527,7 @@
 								"content"
 							]
 						},
-						"description": "This API provides the index number and information for all near content camera sources.\nOutput: Array of content camera objects.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides the index number and information for all near content camera sources.\nOutput: Array of content camera objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -555,7 +556,7 @@
 								}
 							]
 						},
-						"description": "This API provides information for the near camera specified by sourceID.\nOutput: Single camera object.\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+						"description": "This API provides information for the near camera specified by sourceID.\nOutput: Single camera object (see PDF for example).\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
 					},
 					"response": []
 				},
@@ -621,7 +622,7 @@
 								"selectedpeople"
 							]
 						},
-						"description": "This API provides information for the selected near people camera source.\nOutput: Selected people camera object.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides information for the selected near people camera source.\nOutput: Selected people camera object (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -680,7 +681,7 @@
 								"selectedcontent"
 							]
 						},
-						"description": "This API provides information for the selected near content camera source.\nOutput: Selected content camera object.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides information for the selected near content camera source.\nOutput: Selected content camera object (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -740,7 +741,7 @@
 								"all"
 							]
 						},
-						"description": "This API provides the list of near camera presets.\nOutput: Array of preset objects.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides the list of near camera presets.\nOutput: Array of preset objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -770,7 +771,7 @@
 								}
 							]
 						},
-						"description": "This API provides the near camera presets information for a specified camera stored in the index.\nOutput: Single preset object.\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+						"description": "This API provides the near camera presets information for a specified camera stored in the index.\nOutput: Single preset object (see PDF for example).\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
 					},
 					"response": []
 				},
@@ -882,7 +883,7 @@
 								"all"
 							]
 						},
-						"description": "This API provides the list and information for all far camera sources.\nOutput: Array of far camera objects.\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+						"description": "This API provides the list and information for all far camera sources.\nOutput: Array of far camera objects (see PDF for example).\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
 					},
 					"response": []
 				},
@@ -904,7 +905,7 @@
 								"selectedpeople"
 							]
 						},
-						"description": "This API provides information for the selected far people camera source.\nOutput: Selected far people camera object.\nCodes: 200 OK, 500 Server Error"
+						"description": "This API provides information for the selected far people camera source.\nOutput: Selected far people camera object (see PDF for example).\nCodes: 200 OK, 500 Server Error"
 					},
 					"response": []
 				},
@@ -960,22 +961,2411 @@
 								"rest",
 								"cameras",
 								"far",
-<environment_details>
-# VSCode Visible Files
-../../../../../Poly_VideoOS_REST_API.postman_collection.json
-../../../../../Poly_VideoOS_REST_API.postman_collection.json
-Poly_VideoOS_REST_API.postman_collection.json
-
-# VSCode Open Tabs
-file1.py
-n8n-file.txt
-../../../Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json
-pdf_9122216_en-US-1.pdf
-Poly_VideoOS_REST_API.postman_collection.json
-
-# Current Time
-4/4/2025, 4:22:02 PM (America/Chicago, UTC-5:00)
-
-# Current Mode
-ACT MODE
-</environment_details>
+								":sourceID"
+							],
+							"variable": [
+								{
+									"key": "sourceID",
+									"value": "1",
+									"description": "The unique identifier for the camera index."
+								}
+							]
+						},
+						"description": "This API provides information for the far camera specified by sourceID.\nOutput: Single camera object (see PDF for example).\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Move Specific Far Camera",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"moveStart\",\n  \"direction\": \"MOVE_UP\",\n  \"message\": \"\",\n  \"withImage\": \"No\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/far/:sourceID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"far",
+								":sourceID"
+							],
+							"variable": [
+								{
+									"key": "sourceID",
+									"value": "1",
+									"description": "The unique identifier for the camera index."
+								}
+							]
+						},
+						"description": "This API performs the move operation for the far camera specified by sourceID.\n(See 'Move Specific Near Camera' for body details)\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Snapshot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/cameras/snapshot/:snapshotID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"cameras",
+								"snapshot",
+								":snapshotID"
+							],
+							"variable": [
+								{
+									"key": "snapshotID",
+									"value": "near_image_1.jpg",
+									"description": "Available values: near_image_1.jpg, far_image_1.jpg, or content_image_1.jpg."
+								}
+							]
+						},
+						"description": "This API returns a stored snapshot specified by snapshotID.\nOutput: Image data (not JSON)\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Collaboration",
+			"description": "Collaboration session related commands",
+			"item": [
+				{
+					"name": "Get Collaboration Session State",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/collaboration",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"collaboration"
+							]
+						},
+						"description": "This API provides the current state of the collaboration session.\nOutput: `{ \"SessionId\": <string>, \"sessionState\": \"ACTIVE\" }`\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform Collaboration Action",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"END\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/collaboration",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"collaboration"
+							]
+						},
+						"description": "This API performs an action on the active collaboration session.\nAction: \"END\".\nCodes: 200 OK, 204 No Content, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Content Save Process",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/collaboration/content?pin={{room_pin}}",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"collaboration",
+								"content"
+							],
+							"query": [
+								{
+									"key": "pin",
+									"value": "{{room_pin}}",
+									"description": "The room pin to authorize access to content session"
+								}
+							]
+						},
+						"description": "This API returns a context ID and begins the content save process.\nOutput: `{ \"context_id\": \"<string>\" }`\nCodes: 200 OK, 204 No Content, 403 Forbidden, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Saved Content",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/collaboration/content?pin={{room_pin}}&context-id={{context_id}}",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"collaboration",
+								"content"
+							],
+							"query": [
+								{
+									"key": "pin",
+									"value": "{{room_pin}}",
+									"description": "The room pin to authorize access to content session."
+								},
+								{
+									"key": "context-id",
+									"value": "{{context_id}}",
+									"description": "The context_id provided from the collaboration/content POST command."
+								}
+							]
+						},
+						"description": "This API provides previously saved content as an attachment, using context_id from the collaboration/content POST command.\nOutput: File attachment\nCodes: 200 OK, 204 No Content, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Content Save Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/collaboration/contentsavestatus?pin={{room_pin}}&status=true",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"collaboration",
+								"contentsavestatus"
+							],
+							"query": [
+								{
+									"key": "pin",
+									"value": "{{room_pin}}",
+									"description": "The room pin to authorize access to content session."
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"description": "True enables save. False disables save."
+								}
+							]
+						},
+						"description": "This API provides the content save enable/disable status.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Saved Content (ZIP)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/collaboration/content/all?pin={{room_pin}}",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"collaboration",
+								"content",
+								"all"
+							],
+							"query": [
+								{
+									"key": "pin",
+									"value": "{{room_pin}}",
+									"description": "The room pin to authorize access to content session."
+								}
+							]
+						},
+						"description": "This API provides and downloads a ZIP file containing saved content from the active collaboration session.\nOutput: ZIP file attachment\nCodes: 200 OK, 204 No Content, 403 Forbidden, 500 Server Error"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Conferences",
+			"description": "Conference call related commands",
+			"item": [
+				{
+					"name": "Get All Conferences",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences"
+							]
+						},
+						"description": "This API provides a list of all current conference calls on the system.\nOutput: Array of conference objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Single Participant Conference",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"address\": \"user@example.com\",\n  \"rate\": 2048,\n  \"dialType\": \"SIP\",\n  \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences"
+							]
+						},
+						"description": "This API performs a single participant conference call.\nDial Types: “LOOPBACK”, “AUTO”, “VIDEO”, “VOICE”, “H320”, “H323”, “SIP”, “GATEWAY”, “POTS”, “ISDN_VOICE”, “SIP_SPEAKERPHONE”, “POTS_SPEAKERPHONE”, “VOICE_H323”, “VOICE_SIP”, “VOICE_GATEWAY”.\nOutput: Array with link object `[ { \"rel\": \"string\", \"href\": \"string\" } ]`\nCodes: 200 OK, 415 Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Blast Dial Conference",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"endPointList\": [\n    {\n      \"addresses\": [\n        {\n          \"address\": \"user1@example.com\",\n          \"rate\": 2048,\n          \"dialType\": \"SIP\"\n        }\n      ]\n    },\n    {\n      \"addresses\": [\n        {\n          \"address\": \"192.168.1.100\",\n          \"rate\": 1024,\n          \"dialType\": \"H323\"\n        }\n      ]\n    }\n  ],\n  \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/blast",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								"blast"
+							]
+						},
+						"description": "This API performs a blast dial to establish a multiple participant conference call.\n(See 'Start Single Participant Conference' for Dial Types)\nOutput: Link object `{ \"rel\": \"string\", \"href\": \"string\" }`\nCodes: 200 OK, 400 Bad Request, 415 Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conference Capabilities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/capabilities",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								"capabilities"
+							]
+						},
+						"description": "This API provides the system’s conference call capabilities.\nOutput: `{ \"canBlastDial\": true, \"canMakeAudioCall\": true, \"canMakeVideoCall\": true }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Conference Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference to retrieve."
+								}
+							]
+						},
+						"description": "This API provides information for the specified conference call.\nOutput: Conference object (see PDF for example).\nCodes: 200 OK, 400 Bad Request, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Hang Up Specific Conference",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference to hang up."
+								}
+							]
+						},
+						"description": "This API hangs up and disconnects the specified conference call.\nOutput: `0`\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conference Connections",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/connections?filter=ALL",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"connections"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "ALL",
+									"description": "Available values: ALL, ACTIVE, ANSWERABLE, INCOMING, PENDING."
+								}
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								}
+							]
+						},
+						"description": "This API provides a list of connections associated to the specified conference.\nOutput: Array of connection objects (see PDF for example).\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Connection to Conference",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"address\": \"newparticipant@example.com\",\n  \"rate\": 2048,\n  \"dialType\": \"SIP\",\n  \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/connections",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"connections"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								}
+							]
+						},
+						"description": "This API dials and adds a new endpoint connection to an active conference specified by confID.\nOutput: Array with link object `[ { \"rel\": \"self\", \"href\": \"string\" } ]`\nCodes: 200 OK, 404 Unavailable, 415 Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Connection Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/connections/:connID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"connections",
+								":connID"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								},
+								{
+									"key": "connID",
+									"value": "2",
+									"description": "The unique identifier for the connection."
+								}
+							]
+						},
+						"description": "This API provides information for a specific connection using connID, on the specified conference call using confID.\nOutput: Connection object (see PDF for example).\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Hang Up Specific Connection",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/connections/:connID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"connections",
+								":connID"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								},
+								{
+									"key": "connID",
+									"value": "2",
+									"description": "The unique identifier for the connection to hang up."
+								}
+							]
+						},
+						"description": "This API hangs up and disconnects a specific connection using connID, on the specified conference call using confID.\nOutput: `0`\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conference Terminals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/terminals",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"terminals"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								}
+							]
+						},
+						"description": "This API provides a list of terminals associated with the specified conference call using confID.\nOutput: Array of terminal objects (see PDF for example).\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Terminal Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/terminals/:termID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"terminals",
+								":termID"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								},
+								{
+									"key": "termID",
+									"value": "1",
+									"description": "The unique identifier for the terminal."
+								}
+							]
+						},
+						"description": "This API provides a specific terminal using termID, associated with the specified conference call using confID.\nOutput: Terminal object (see PDF for example).\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Hang Up Specific Terminal",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/terminals/:termID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"terminals",
+								":termID"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								},
+								{
+									"key": "termID",
+									"value": "1",
+									"description": "The unique identifier for the terminal to hang up."
+								}
+							]
+						},
+						"description": "This API hangs up and disconnects a specific terminal using termID, associated with the specified conference call using confID.\nOutput: `0`\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conference Media Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/mediastats",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"mediastats"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								}
+							]
+						},
+						"description": "This API provides a list of media statistics for connections associated to the specified conference.\nOutput: Array of media stat objects (see PDF for example).\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Connection Media Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/connections/:connID/mediastat",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"connections",
+								":connID",
+								"mediastat"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								},
+								{
+									"key": "connID",
+									"value": "2",
+									"description": "The unique identifier for the connection."
+								}
+							]
+						},
+						"description": "This API provides media statistics for a specific connection using connID, on the specified conference call using confID.\nOutput: Array of media stat objects (see PDF for example).\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Terminal Media Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/mediastats/terminals/:termID",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"mediastats",
+								"terminals",
+								":termID"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								},
+								{
+									"key": "termID",
+									"value": "1",
+									"description": "The unique identifier for the terminal."
+								}
+							]
+						},
+						"description": "This API provides media statistics for a specific terminal using termID, associated with the specified conference call using confID.\nOutput: Array of media stat objects (see PDF for example).\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Terminal Media Stats Quality",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/conferences/:confID/termmediastats",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"conferences",
+								":confID",
+								"termmediastats"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The unique identifier of the conference."
+								}
+							]
+						},
+						"description": "This API provides quality metrics for all terminal endpoints associated with the specified conference call using confID.\nOutput: Array of quality objects `[ { \"id\": \"string\", \"quality\": 0 } ]`\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Directory",
+			"description": "Directory related commands",
+			"item": [
+				{
+					"name": "Get Favorites",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/favorites?start=1&limit=10",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"favorites"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "1",
+									"description": "(Optional) Starting index (1-based). Default: 1."
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "(Optional) Max number of results. Default: 1."
+								}
+							]
+						},
+						"description": "This API provides a list of favorite directory entries, sorted by the favorite’s index value.\nOutput: Object with 'entries' array and 'next' link (see PDF for example).\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Global Directory Server Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/global/server",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"global",
+								"server"
+							]
+						},
+						"description": "This API provides information about the configured global directory server.\nOutput: Server info object (see PDF for example).\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get MTD Default Group Entry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/global/mtddefaultgroupentry",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"global",
+								"mtddefaultgroupentry"
+							]
+						},
+						"description": "This API provides information about the multi-tier directory group entry, if configured.\nOutput: Entry object (see PDF for example).\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Local Directory Server Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/server",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"server"
+							]
+						},
+						"description": "This API provides information about the configured local directory server.\nOutput: Server info object (see PDF for example).\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Local Directory Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"SINGLE\",\n  \"displayName\": \"John Doe\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"favorite\": true,\n  \"devices\": [\n    {\n      \"name\": \"Work SIP\",\n      \"addressList\": [\n        {\n          \"type\": \"SIP\",\n          \"number\": \"john.doe@example.com\",\n          \"rate\": \"2048\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries"
+							]
+						},
+						"description": "This API adds a new entry to the local directory server.\nEntry Type: \"SINGLE\", \"GROUP\".\nAddress Type: \"IP_ADDRESS\", \"IP_EXTENSION\", \"H323_NAME\", \"SIP\", \"POTS\", \"ISDN\", \"EMAIL\", \"TELEPHONE\", \"MOBILE\".\nCodes: 201 Created, 400 Bad Request, 405 Not Allowed, 500 Server Error, 507 Insufficient Storage"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Local Directory Entry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries/:entryId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries",
+								":entryId"
+							],
+							"variable": [
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry to retrieve."
+								}
+							]
+						},
+						"description": "This API provides information about the specified local directory entry.\nOutput: Entry object (see PDF for example).\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Local Directory Entry",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries/:entryId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries",
+								":entryId"
+							],
+							"variable": [
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry to delete."
+								}
+							]
+						},
+						"description": "This API removes an entry from the local directory server.\nCodes: 204 No Content, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Local Directory Entry",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"SINGLE\",\n  \"displayName\": \"Jane Doe Updated\",\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"favorite\": false,\n  \"devices\": [\n    {\n      \"name\": \"Mobile\",\n      \"addressList\": [\n        {\n          \"type\": \"MOBILE\",\n          \"number\": \"+15551234567\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries/:entryId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries",
+								":entryId"
+							],
+							"variable": [
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry to update."
+								}
+							]
+						},
+						"description": "This API performs an update to an existing entry within the local directory server.\n(See 'Add Local Directory Entry' for body details)\nCodes: 204 No Content, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform Action on Local Entry (Dial)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"dial\",\n  \"deviceId\": \"device_id_here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries/:entryId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries",
+								":entryId"
+							],
+							"variable": [
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry."
+								}
+							]
+						},
+						"description": "This API performs an action on the specified entry within the local directory server.\nAction: \"dial\".\nDeviceId: Optional device ID to dial.\nCodes: 204 No Content, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Local Entry Favorite Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"favorite\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries/:entryId/favorite",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries",
+								":entryId",
+								"favorite"
+							],
+							"variable": [
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry."
+								}
+							]
+						},
+						"description": "This API performs an action to set or unset favorite status on an existing entry within the local directory server.\nInput: `{ \"favorite\": <boolean> }`\nCodes: 200 OK, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Local Favorite Entry Position",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"index\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries/:entryId/favorite",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries",
+								":entryId",
+								"favorite"
+							],
+							"variable": [
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the favorite entry."
+								}
+							]
+						},
+						"description": "This API performs an update to the position order of an existing favorite entry within the local directory server.\nInput: `{ \"index\": <integer> }`\nCodes: 200 OK, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Manage Local Group Members",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"add\",\n  \"entryId\": \"member_entry_id_here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/local/entries/:groupId/members",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"local",
+								"entries",
+								":groupId",
+								"members"
+							],
+							"variable": [
+								{
+									"key": "groupId",
+									"value": "group_entry_id_here",
+									"description": "The unique identifier of the group entry."
+								}
+							]
+						},
+						"description": "This API performs an action on the members of the specified directory group within the local directory server.\nActions: \"query\", \"add\", \"remove\".\nEntryId: Optional entry ID for add/remove actions.\nCodes: 201 Created, 204 No Content, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Directory Search Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"searchString\": \"Doe\",\n  \"serverScope\": \"ALL\",\n  \"entryScope\": \"ANY\",\n  \"groupScope\": \"ONE_LEVEL\",\n  \"order\": \"DISPLAY_NAME\",\n  \"groupID\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/queries",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"queries"
+							]
+						},
+						"description": "This API performs a new asynchronous directory entries search query.\nServer Scope: \"ALL\", \"LOCAL\", \"GLOBAL\", \"FAVORITES\".\nEntry Scope: \"SINGLE\", \"GROUP\", \"ANY_TIERED\", \"ANY\".\nGroup Scope: \"ONE_LEVEL\", \"RECURSIVE\".\nOrder: \"FIRST_NAME\", \"LAST_NAME\", \"DISPLAY_NAME\".\nOutput: `{ \"id\": \"<queryId>\" }`\nCodes: 201 Created, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Initial Directory Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/queries/initial",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"queries",
+								"initial"
+							]
+						},
+						"description": "This API provides a new asynchronous directory entries search query, used to retrieve a default list of directory entries.\nOutput: `{ \"id\": \"<queryId>\" }`\nCodes: 201 Created, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Directory Query Results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/queries/:queryId?start=1&limit=20",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"queries",
+								":queryId"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "1",
+									"description": "(Optional) Starting index (1-based). Default: 1."
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"description": "(Optional) Max number of results. Default: 1."
+								}
+							],
+							"variable": [
+								{
+									"key": "queryId",
+									"value": "query_id_here",
+									"description": "The query ID of the directory search to retrieve."
+								}
+							]
+						},
+						"description": "This API provides results of a directory entries search for a specified query ID.\nOutput: Object with 'entries' array and 'next' link (see PDF for example).\nCodes: 200 OK, 204 No Content, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Directory Query",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/queries/:queryId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"queries",
+								":queryId"
+							],
+							"variable": [
+								{
+									"key": "queryId",
+									"value": "query_id_here",
+									"description": "The query ID of the directory search to delete."
+								}
+							]
+						},
+						"description": "This API removes a directory entry search query for a specified query ID.\nCodes: 204 No Content, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Server Entry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/:serverId/entries/:entryId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								":serverId",
+								"entries",
+								":entryId"
+							],
+							"variable": [
+								{
+									"key": "serverId",
+									"value": "server_id_here",
+									"description": "The unique identifier of the directory server (e.g., 'local', 'global')."
+								},
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry to retrieve."
+								}
+							]
+						},
+						"description": "This API provides a specified directory entry from the specified directory server.\nOutput: Entry object (see PDF for example).\nCodes: 200 OK, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform Action on Server Entry (Dial)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"dial\",\n  \"deviceId\": \"device_id_here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/:serverId/entries/:entryId",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								":serverId",
+								"entries",
+								":entryId"
+							],
+							"variable": [
+								{
+									"key": "serverId",
+									"value": "server_id_here",
+									"description": "The unique identifier of the directory server."
+								},
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry."
+								}
+							]
+						},
+						"description": "This API performs an action on the specified entry within the specified directory server.\nAction: \"dial\".\nDeviceId: Optional device ID to dial.\nCodes: 204 No Content, 400 Bad Request, 404 Unavailable, 500 Server Error, 501 Not Implemented, 507 Insufficient Storage"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Server Entry Favorite Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"favorite\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/:serverId/entries/:entryId/favorite",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								":serverId",
+								"entries",
+								":entryId",
+								"favorite"
+							],
+							"variable": [
+								{
+									"key": "serverId",
+									"value": "server_id_here",
+									"description": "The unique identifier of the directory server."
+								},
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the entry."
+								}
+							]
+						},
+						"description": "This API performs an action to set or unset favorite status on the specified entry within the specified directory server.\nInput: `{ \"favorite\": <boolean> }`\nOutput: `{ \"success\": true, \"reason\": \"string\" }`\nCodes: 200 OK, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Server Favorite Entry Position",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"index\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/:serverId/entries/:entryId/favorite",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								":serverId",
+								"entries",
+								":entryId",
+								"favorite"
+							],
+							"variable": [
+								{
+									"key": "serverId",
+									"value": "server_id_here",
+									"description": "The unique identifier of the directory server."
+								},
+								{
+									"key": "entryId",
+									"value": "entry_id_here",
+									"description": "The unique identifier of the favorite entry."
+								}
+							]
+						},
+						"description": "This API performs an update to the position order of the specified entry within the specified directory server.\nInput: `{ \"index\": <integer> }`\nOutput: `{ \"success\": true, \"reason\": \"string\" }`\nCodes: 200 OK, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Manage Server Group Members",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"query\",\n  \"entryId\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/:serverId/entries/:groupId/members",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								":serverId",
+								"entries",
+								":groupId",
+								"members"
+							],
+							"variable": [
+								{
+									"key": "serverId",
+									"value": "server_id_here",
+									"description": "The unique identifier of the directory server."
+								},
+								{
+									"key": "groupId",
+									"value": "group_entry_id_here",
+									"description": "The unique identifier of the group entry."
+								}
+							]
+						},
+						"description": "This API performs an action on the members of the specified directory group within the specified directory server.\nActions: \"query\", \"add\", \"remove\".\nEntryId: Optional entry ID for add/remove actions.\nOutput: `{ \"id\": \"<queryId>\" }` (for query action)\nCodes: 201 Created, 204 No Content, 400 Bad Request, 404 Unavailable, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Import Directory (XML)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<!-- XML Directory Data Here -->",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/import",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"import"
+							]
+						},
+						"description": "This API performs an import of an XML file containing directory entries.\nInput: XML file content in the request body.\nCodes: 204 No Content, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Export Directory (XML)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/directory/export",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"directory",
+								"export"
+							]
+						},
+						"description": "This API performs an export of directory entries to an XML file and makes them available for download.\nOutput: XML file attachment.\nCodes: 200 OK, 400 Bad Request, 500 Server Error"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Session",
+			"description": "Session management commands",
+			"item": [
+				{
+					"name": "Create Session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user\": \"admin\",\n  \"password\": \"{{admin_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/session",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"session"
+							]
+						},
+						"description": "This API creates and authenticates a session on the system.\nOutput: Session details object (see PDF for example).\nCodes: 200 SUCCESS, 403 LOG-IN ATTEMPT FAILED"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "System",
+			"description": "System information and control commands",
+			"item": [
+				{
+					"name": "Get H323 Gatekeepers Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/h323gatekeepers",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"h323gatekeepers"
+							]
+						},
+						"description": "This API provides the status and information of the H323 gatekeeper servers.\nOutput: Array of gatekeeper objects `[ { “state”: “ON”, “address”: “string”, “version”: “string”, “model”: “string” } ]`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get System Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/logs",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"logs"
+							]
+						},
+						"description": "This API provides the system logs in a .tar file as an octet stream file attachment response.\nOutput: .tar file attachment.\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Environment Control App (TC8)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/apps/environment",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"apps",
+								"environment"
+							]
+						},
+						"description": "This API starts the Environment Control app on a paired touch controller. This API only supports one connected TC8 device.\nOutput: `{ \"result\": true }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Hide Environment Control App (TC8)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/apps/environment",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"apps",
+								"environment"
+							]
+						},
+						"description": "This API hides the Environment Control app on a paired touch controller. This API only supports one connected TC8 device.\nOutput: `{ \"result\": true }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Environment Control App Status (TC8)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/apps/environment",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"apps",
+								"environment"
+							]
+						},
+						"description": "This API gets the status of the Environment Control app on a paired touch controller in the form of a list. This API only supports one connected TC8 device.\nOutput: `[ { \"macAddress\": \"<string>\", \"environmentControlAppActive\": true } ]`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Mode Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/mode/device",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"mode",
+								"device"
+							]
+						},
+						"description": "This API provides the status of whether the Device Mode application is currently running.\nOutput: `{ “result”: true }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Device Mode",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/mode/device",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"mode",
+								"device"
+							]
+						},
+						"description": "This API starts Device Mode if it isn’t running.\nOutput: `{ \"success”: true, “reason”: “string” }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Stop Device Mode",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/mode/device",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"mode",
+								"device"
+							]
+						},
+						"description": "This API stops Device Mode if it is running.\nOutput: `{ \"success”: true, “reason”: “string” }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Digital Signage Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/mode/signage",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"mode",
+								"signage"
+							]
+						},
+						"description": "This API provides the status of whether the Digital Signage application is currently running.\nOutput: `{ “result”: true }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Start Digital Signage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/mode/signage",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"mode",
+								"signage"
+							]
+						},
+						"description": "This API starts Digital Signage if it isn’t running.\nOutput: `{ \"success”: true, “reason”: “string” }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Stop Digital Signage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/mode/signage",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"mode",
+								"signage"
+							]
+						},
+						"description": "This API stops Digital Signage if it is running.\nOutput: `{ \"success”: true, “reason”: “string” }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Ping Network Host",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"destination\": \"192.168.1.1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/network/ping",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"network",
+								"ping"
+							]
+						},
+						"description": "This API performs an ICMP echo ping to the destination network host.\nInput: `{ \"destination\": <string> }`\nOutput: `{ \"icmpReachable\": true, \"responseTime\": 0, \"h323Reachable\": true, \"sipReachable\": true }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Traceroute Network Host",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"destination\": \"8.8.8.8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/network/traceroute",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"network",
+								"traceroute"
+							]
+						},
+						"description": "This API performs network traceroute to the destination network host.\nInput: `{ \"destination\": <string> }`\nOutput: Traceroute result object (see PDF for example).\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Reboot System",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"reboot\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/reboot",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"reboot"
+							]
+						},
+						"description": "This API performs a reboot of the system.\nInput: `{ \"action\": \"reboot\" }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset System Settings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"action\": \"resetsettings\",\n  \"keepCertificates\": false,\n  \"keepCdr\": false,\n  \"keepDirectory\": false,\n  \"keepLogs\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/resetsettings",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"resetsettings"
+							]
+						},
+						"description": "This API performs a reset of configurations and settings of the system.\nInput: `{ \"action\": \"resetsettings\", \"keepCertificates\": <boolean>, \"keepCdr\": <boolean>, \"keepDirectory\": <boolean>, \"keepLogs\": <boolean> }` (True retains, False resets)\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get SIP Servers Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/sipservers",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"sipservers"
+							]
+						},
+						"description": "This API provides the status and information of the SIP servers.\nOutput: `{ “state”: “ON”, “address”: “string”, “version”: “string”, “model”: “string” }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get System Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/status",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"status"
+							]
+						},
+						"description": "This API provides the status and information of important areas of the system.\nOutput: Array of status objects (see PDF for example).\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Get System Time (UTC)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/time",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"time"
+							]
+						},
+						"description": "This API provides the current time in milliseconds of the system, using UTC time zone and the time offset for the currently set time zone.\nOutput: `{ \"time”: <milliseconds_since_epoch>, “tzOffset”: <offset_in_minutes> }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				},
+				{
+					"name": "Set System Time (UTC)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"time\": 1678886400000 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/time",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"time"
+							]
+						},
+						"description": "This API performs a set of the current system time using Unix Epoch Time format (milliseconds).\nInput: `{ \"time\": <milliseconds_since_epoch>, \"tzOffset\": <integer> (optional) }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Get System Time (Local ISO 8601)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/system/time/local",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"system",
+								"time",
+								"local"
+							]
+						},
+						"description": "This API provides the current time in a single ISO 8601 formatted string value.\nOutput: `{ \"time”: “YYYY-MM-DDTHH:mm:ss.sssZ” }`\nCodes: 200 OK, 500 Server Error"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SysTracker",
+			"description": "System tracking commands",
+			"item": [
+				{
+					"name": "Get Media Stats (Shared Content)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/mediastats",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"mediastats"
+							]
+						},
+						"description": "This API provides the media status value(s) associated with all shared content.\nOutput: Object with 'vars' array (see PDF for example).\nCodes: 200 OK"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Video",
+			"description": "Video related commands",
+			"item": [
+				{
+					"name": "Get Local Video Mute Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/video/local/mute",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"video",
+								"local",
+								"mute"
+							]
+						},
+						"description": "This API provides the status of whether the local video is hidden (muted).\nOutput: `{ “result”: true }` (true if hidden/muted)\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Set Local Video Mute Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"mute\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{system_ip}}/rest/video/local/mute",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"video",
+								"local",
+								"mute"
+							]
+						},
+						"description": "This API performs a hide (mute) or unhide (unmute) action on the local video.\nInput: `{ \"mute”: <boolean> }` (True hides, False unhides)\nOutput: `{ \"success”: true, “reason”: “string” }`\nCodes: 200 OK"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Remote Video Mute Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/video/remote/:confID/mute",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"video",
+								"remote",
+								":confID",
+								"mute"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The conference ID to check."
+								}
+							]
+						},
+						"description": "This API provides the status of whether the remote video is hidden (muted) on a specified conference.\nOutput: `{ “result”: true }` (true if hidden/muted)\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Remote Video Mute Lock Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{system_ip}}/rest/video/remote/:confID/mutelock",
+							"protocol": "https",
+							"host": [
+								"{{system_ip}}"
+							],
+							"path": [
+								"rest",
+								"video",
+								"remote",
+								":confID",
+								"mutelock"
+							],
+							"variable": [
+								{
+									"key": "confID",
+									"value": "0",
+									"description": "The conference ID to check."
+								}
+							]
+						},
+						"description": "This API provides the status of whether the video hidden with a mute lock is applied to a specified conference.\nOutput: `{ “result”: true }` (true if mute lock applied)\nCodes: 200 OK, 404 Unavailable"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "system_ip",
+			"value": "YOUR_SYSTEM_IP",
+			"type": "string"
+		},
+		{
+			"key": "admin_password",
+			"value": "YOUR_ADMIN_PASSWORD",
+			"type": "string"
+		},
+		{
+			"key": "room_pin",
+			"value": "YOUR_ROOM_PIN",
+			"type": "string"
+		},
+		{
+			"key": "context_id",
+			"value": "GENERATED_CONTEXT_ID",
+			"type": "string"
+		}
+	]
+}
