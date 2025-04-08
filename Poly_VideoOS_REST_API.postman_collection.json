@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "f5d8e0a1-1b2a-4c3d-8e4f-9a0b1c2d3e5f",
-		"name": "Poly VideoOS REST API (v3.7.0) - Complete",
-		"description": "Complete Postman collection generated from Poly VideoOS REST API Reference Guide Software 3.7.0 (September 2021 | 3725-86572-007A)",
+		"name": "Poly VideoOS REST API (v3.7.0) - Official Paths",
+		"description": "Complete Postman collection generated from Poly VideoOS REST API Reference Guide Software 3.7.0 (September 2021 | 3725-86572-007A), using official paths from the documentation.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
