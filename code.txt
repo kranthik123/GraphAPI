@@ -1,0 +1,198 @@
+# Import necessary libraries
+# requests: For making HTTP API calls to the Poly device
+# urllib3: Used here to disable warnings for self-signed certificates, common on these devices
+# dynatrace_extension: The core library for building a Dynatrace extension
+from dynatrace_extension import Extension, Status, StatusValue
+import requests
+import urllib3
+
+# Disable the InsecureRequestWarning that is generated when making HTTPS requests without certificate verification
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+class ExtensionImpl(Extension):
+    """
+    This class is the main implementation of the Dynatrace extension for monitoring Poly Video Codecs.
+    It handles authentication, data fetching from the REST API, and reporting metrics to Dynatrace.
+    This version is tailored for devices running VideoOS firmware v3.7.0.
+    """
+
+    def _create_authenticated_session(self, ip, user, password):
+        """
+        Creates and returns an authenticated requests.Session object.
+        Using a Session object is the standard way to handle cookies and persist them across multiple requests.
+        """
+        self.logger.info(f"[{ip}] Attempting to authenticate and create a session.")
+        
+        session = requests.Session()
+        session.verify = False # Disable SSL certificate verification
+        
+        login_url = f"https://{ip}/rest/session"
+        login_payload = {"user": user, "password": password}
+        login_headers = {"Content-Type": "application/json"}
+
+        try:
+            login_resp = session.post(login_url, json=login_payload, headers=login_headers, timeout=10)
+            login_resp.raise_for_status()
+            login_data = login_resp.json()
+
+            if login_data.get("success") and login_data.get("session", {}).get("isAuthenticated"):
+                self.logger.info(f"[{ip}] Authentication successful. Session is now authenticated.")
+                return session
+            else:
+                raise Exception(f"Login failed: {login_data.get('reason', 'Unknown reason')}")
+        except Exception as e:
+            self.logger.error(f"[{ip}] Failed to create an authenticated session: {e}")
+            return None
+
+    def _make_api_request(self, session, ip, endpoint):
+        """
+        A helper function to make a generic GET request using an authenticated session.
+        """
+        url = f"https://{ip}{endpoint}"
+        
+        self.logger.info(f"[{ip}] Querying endpoint: {endpoint}")
+        try:
+            response = session.get(url, timeout=10)
+            response.raise_for_status()
+            return response.json()
+        except Exception as e:
+            self.logger.error(f"[{ip}] Error querying endpoint {endpoint}: {e}")
+            return None
+
+    def _query_device_health(self, session, ip):
+        """Fetches and reports core device health metrics."""
+        # --- System Component Status (Network, Provisioning, etc.) ---
+        status_data = self._make_api_request(session, ip, "/rest/system/status")
+        if isinstance(status_data, list):
+            for item in status_data:
+                item_name = item.get("name")
+                state_list = item.get("stateList", [])
+                
+                # Report IP Network Status
+                if item_name == "system.status.ipnetwork":
+                    network_status = 1 if "up" in state_list else 0
+                    self.report_metric("poly.health.network_status", network_status, dimensions={"endpoint": ip})
+
+                # Report Provisioning Status
+                elif item_name == "system.status.provisioning":
+                    # Assuming "off" is a normal state if not provisioned, and other states are errors.
+                    prov_status = 0 if "off" in state_list else 1
+                    self.report_metric("poly.health.provisioning_status", prov_status, dimensions={"endpoint": ip})
+
+        # --- Calendar Service Status ---
+        calendar_data = self._make_api_request(session, ip, "/rest/calendar")
+        if calendar_data:
+            calendar_status_str = calendar_data.get("Status")
+            status_map = {"ONLINE": 0, "OFFLINE": 1, "CONNECTING": 2, "DISABLED": 3, "ERR_AUTHENTICATION": 4, "ERR_UNKNOWN": 5}
+            calendar_status = status_map.get(calendar_status_str, -1)
+            self.report_metric("poly.health.calendar_status", calendar_status, dimensions={"endpoint": ip})
+
+    def _query_peripheral_status(self, session, ip):
+        """Fetches status for peripherals using the correct endpoints for this firmware version."""
+        # --- Camera Connection Status ---
+        # The correct endpoint for this firmware is /rest/cameras/near/all
+        camera_data = self._make_api_request(session, ip, "/rest/cameras/near/all")
+        if isinstance(camera_data, list):
+            # Assume the first "people" camera found is the primary one
+            camera_connected = 0
+            for cam in camera_data:
+                if cam.get("sourceType") == "SRC_PEOPLE":
+                    camera_connected = 1 if cam.get("connected") else 0
+                    break # Found the primary camera, no need to check others
+            self.report_metric("poly.peripheral.camera_connected", camera_connected, dimensions={"endpoint": ip})
+
+        # --- Microphone Status ---
+        # The /rest/audio endpoint provides mute status and connected mic count
+        audio_data = self._make_api_request(session, ip, "/rest/audio")
+        if audio_data:
+            is_muted = 1 if audio_data.get("muted") else 0
+            self.report_metric("poly.peripheral.microphone_muted", is_muted, dimensions={"endpoint": ip})
+            
+            mic_count = audio_data.get("numOfMicsConnected")
+            if mic_count is not None:
+                self.report_metric("poly.peripheral.microphone_count", mic_count, dimensions={"endpoint": ip})
+
+    def _query_call_quality(self, session, ip):
+        """Fetches active call count and detailed in-call media quality statistics."""
+        conferences = self._make_api_request(session, ip, "/rest/conferences")
+        if conferences is None:
+             self.report_metric("poly.call.active_count", 0, dimensions={"endpoint": ip})
+             return
+        
+        self.report_metric("poly.call.active_count", len(conferences), dimensions={"endpoint": ip})
+
+        for call in conferences:
+            conf_id = call.get("id")
+            if not conf_id:
+                continue
+
+            # This is the primary endpoint for all in-call quality metrics
+            mediastats = self._make_api_request(session, ip, f"/rest/conferences/{conf_id}/mediastats")
+            if not isinstance(mediastats, list):
+                continue
+            
+            # Iterate through each media stream (audioRx, videoTx, etc.)
+            for stream in mediastats:
+                stream_name = stream.get("mediaStream")
+                if not stream_name:
+                    continue
+                
+                # Create a common set of dimensions for all metrics from this stream
+                dims = {"endpoint": ip, "call_id": str(conf_id), "media_stream": stream_name}
+                
+                # Report all available quality metrics for the stream
+                self.report_metric("poly.call.packet_loss_percent", stream.get("percentPacketLoss", 0), dimensions=dims)
+                self.report_metric("poly.call.jitter", stream.get("jitter", 0), dimensions=dims)
+                self.report_metric("poly.call.max_jitter", stream.get("maxJitter", 0), dimensions=dims)
+                self.report_metric("poly.call.latency", stream.get("latency", 0), dimensions=dims)
+                
+                # Video-specific metrics
+                if "video" in stream_name.lower():
+                    self.report_metric("poly.call.framerate", stream.get("actualFrameRate", 0), dimensions=dims)
+                    self.report_metric("poly.call.bitrate", stream.get("actualBitRate", 0), dimensions=dims)
+
+    def query(self):
+        """
+        This is the main method called by the Dynatrace ActiveGate.
+        """
+        self.logger.info("Starting metric query for Poly devices.")
+
+        devices = self.activation_config.get("endpoints", [])
+        if not devices:
+            self.logger.warning("No devices configured for monitoring.")
+            return
+
+        for device in devices:
+            device_ip = device.get("IP")
+            device_user = device.get("user") 
+            device_password = device.get("password")
+
+            if not all([device_ip, device_user, device_password]):
+                self.logger.error(f"Device configuration incomplete. IP, user, and password are required.")
+                continue
+
+            session = self._create_authenticated_session(device_ip, device_user, device_password)
+
+            if not session:
+                self.report_metric("poly.availability", 0, dimensions={"endpoint": device_ip})
+                self.logger.warning(f"[{device_ip}] Could not authenticate. Reporting device as down.")
+                continue
+
+            self.report_metric("poly.availability", 1, dimensions={"endpoint": device_ip})
+            
+            self._query_device_health(session, device_ip)
+            self._query_peripheral_status(session, device_ip)
+            self._query_call_quality(session, device_ip)
+            
+        self.logger.info("Finished metric query for Poly devices.")
+
+    def fastcheck(self) -> Status:
+        return Status(StatusValue.OK)
+
+# Standard entry point for the extension
+def main():
+    ExtensionImpl().run()
+
+if __name__ == "__main__":
+    main()
