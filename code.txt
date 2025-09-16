@@ -1,0 +1,202 @@
+from typing import Optional, Any
+from dynatrace_extension import Extension, Status, StatusValue
+import requests
+import json
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+class ExtensionImpl(Extension):
+    def authenticate(self, host: str, user: str, password: str) -> Optional[str]:
+        """Authenticate Poly Video Codec device and return session_id."""
+        base_url = f"https://{host}"
+        login_url = f"{base_url}/rest/session"
+        login_payload = {"user": user, "password": password}
+        login_headers = {"Content-Type": "application/json"}
+        self.logger.info(f"Sending login request to {login_url}")
+        try:
+            login_resp = requests.post(login_url, json=login_payload, headers=login_headers, timeout=10, verify=False)
+            self.logger.debug(f"Login Response Status: {login_resp.status_code}")
+            login_resp.raise_for_status()
+            login_data = login_resp.json()
+            self.logger.debug(f"Login Response JSON: {login_data}")
+            if login_data.get("success") and login_data.get("session", {}).get("isAuthenticated"):
+                session_id = login_data["session"]["sessionId"]
+                self.logger.info(f"Authenticated, session_id: {session_id}")
+                return session_id
+            else:
+                self.logger.error(f"Login failed: {login_data}")
+        except requests.RequestException as e:
+            self.logger.error(f"HTTP error during authentication for {host}: {e}")
+        except Exception as e:
+            self.logger.error(f"Unexpected error during authentication for {host}: {e}")
+        return None
+
+    def get_system_status(self, host: str, session_id: str) -> Optional[Any]:
+        """Fetch system status from Poly Video Codec device."""
+        base_url = f"https://{host}"
+        status_url = f"{base_url}/rest/system/status"
+        status_headers = {"Cookie": f"session_id={session_id}"}
+        self.logger.info(f"Sending system status request to {status_url}")
+        try:
+            response = requests.get(status_url, headers=status_headers, timeout=10, verify=False)
+            self.logger.debug(f"System status response status: {response.status_code}")
+            response.raise_for_status()
+            status_data = response.json()
+            self.logger.debug(f"System Status Response JSON: {status_data}")
+            return status_data
+        except requests.RequestException as e:
+            self.logger.error(f"HTTP error querying system status for {host}: {e}")
+        except Exception as e:
+            self.logger.error(f"Unexpected error querying system status for {host}: {e}")
+        return None
+
+    def query(self):
+        """Scheduled to run every minute. Authenticates and fetches system status for each device, then reports metrics."""
+        self.logger.info("Query method started for poly-video extension")
+
+        devices = self.activation_config.get("endpoints", [])
+        if not devices:
+            self.logger.error("No devices configured for monitoring.")
+            return
+
+        for device in devices:
+            try:
+                device_host = device.get("host")
+                self.logger.info(f"Processing device: {device_host}")
+            except Exception as e:
+                self.logger.error(f"Error retrieving host for device {device}: {e}")
+                continue
+
+            try:
+                device_username = device.get("username", "admin")
+                device_password = device.get("password")
+                self.logger.info(f"Got credentials for device {device_host}")
+            except Exception as e:
+                self.logger.error(f"Error retrieving credentials for device {device_host}: {e}")
+                continue
+
+            session_id = self.authenticate(device_host, device_username, device_password)
+            if not session_id:
+                self.logger.warning(f"Authentication failed for device {device_host}. Reported poly_video_codec_up=0.")
+                self.report_metric("poly_video_codec_up", 0, dimensions={"endpoint": device_host})
+                continue
+
+            base_url = f"https://{device_host}"
+            headers = {"cookie": f"session_id={session_id}"}
+
+            # 1. poly_video_codec_up (availability)
+            status_data = self.get_system_status(device_host, session_id)
+            system_up = 0
+            if status_data:
+                up_states = {"up", "all_up"}
+                critical_names = {
+                    "system.status.ipnetwork",
+                    "system.status.trackablecamera",
+                    "system.status.mr.camera",
+                    "system.status.mr.audio"
+                }
+                system_up = 1
+                for item in status_data:
+                    if item.get("name") in critical_names:
+                        if not any(state in up_states for state in item.get("stateList", [])):
+                            system_up = 0
+                            break
+            self.report_metric("poly_video_codec_up", system_up, dimensions={"endpoint": device_host})
+
+            # 2. poly.health.network_status & provisioning_status
+            try:
+                network_status = 0
+                provisioning_status = 0
+                if status_data:
+                    for item in status_data:
+                        if item.get("name") == "system.status.ipnetwork":
+                            network_status = 1 if "up" in item.get("stateList", []) else 0
+                        if item.get("name") == "system.status.provisioning":
+                            provisioning_status = 1 if "up" in item.get("stateList", []) else 0
+                self.report_metric("poly.health.network_status", network_status, dimensions={"endpoint": device_host})
+                self.report_metric("poly.health.provisioning_status", provisioning_status, dimensions={"endpoint": device_host})
+            except Exception as e:
+                self.logger.error(f"Error collecting network/provisioning status for {device_host}: {e}")
+
+            # 3. poly.health.calendar_status
+            try:
+                calendar_url = f"{base_url}/rest/calendar"
+                resp = requests.get(calendar_url, headers=headers, timeout=10, verify=False)
+                resp.raise_for_status()
+                cal_data = resp.json()
+                status_map = {
+                    "ONLINE": 0,
+                    "OFFLINE": 1,
+                    "CONNECTING": 2,
+                    "DISABLED": 3,
+                    "ERR_AUTHENTICATION": 4,
+                    "ERR_UNKNOWN": 5
+                }
+                cal_status = status_map.get(cal_data.get("Status", "UNKNOWN"), -1)
+                self.report_metric("poly.health.calendar_status", cal_status, dimensions={"endpoint": device_host})
+            except Exception as e:
+                self.logger.error(f"Error collecting calendar status for {device_host}: {e}")
+
+            # 4. poly.peripheral.camera_connected
+            try:
+                cam_url = f"{base_url}/rest/cameras/near/all"
+                resp = requests.get(cam_url, headers=headers, timeout=10, verify=False)
+                resp.raise_for_status()
+                cam_data = resp.json()
+                cam_connected = 0
+                if isinstance(cam_data, list):
+                    cam_connected = 1 if any(c.get("connected") for c in cam_data) else 0
+                self.report_metric("poly.peripheral.camera_connected", cam_connected, dimensions={"endpoint": device_host})
+            except Exception as e:
+                self.logger.error(f"Error collecting camera status for {device_host}: {e}")
+
+            # 5. poly.peripheral.microphone_muted
+            try:
+                mic_muted_url = f"{base_url}/rest/audio/muted"
+                resp = requests.get(mic_muted_url, headers=headers, timeout=10, verify=False)
+                resp.raise_for_status()
+                mic_muted = 1 if resp.json() else 0
+                self.report_metric("poly.peripheral.microphone_muted", mic_muted, dimensions={"endpoint": device_host})
+            except Exception as e:
+                self.logger.error(f"Error collecting microphone muted status for {device_host}: {e}")
+
+            # 6. poly.peripheral.microphone_count
+            try:
+                mic_url = f"{base_url}/rest/audio/microphones"
+                resp = requests.get(mic_url, headers=headers, timeout=10, verify=False)
+                resp.raise_for_status()
+                mic_data = resp.json()
+                mic_count = 0
+                if isinstance(mic_data, list):
+                    mic_count = len(mic_data)
+                elif isinstance(mic_data, dict):
+                    mic_count = 1
+                self.report_metric("poly.peripheral.microphone_count", mic_count, dimensions={"endpoint": device_host})
+            except Exception as e:
+                self.logger.error(f"Error collecting microphone count for {device_host}: {e}")
+
+            # 7. poly.call.active_count
+            try:
+                call_url = f"{base_url}/rest/conferences"
+                resp = requests.get(call_url, headers=headers, timeout=10, verify=False)
+                resp.raise_for_status()
+                call_data = resp.json()
+                active_count = 0
+                if isinstance(call_data, list):
+                    active_count = len([c for c in call_data if c.get("active", False)])
+                self.report_metric("poly.call.active_count", active_count, dimensions={"endpoint": device_host})
+            except Exception as e:
+                self.logger.error(f"Error collecting active call count for {device_host}: {e}")
+
+        self.logger.info("Query method ended for poly-video extension")
+
+    def fastcheck(self) -> Status:
+        """Health check for the extension."""
+        return Status(StatusValue.OK)
+
+def main():
+    ExtensionImpl(name="poly-video").run()
+
+if __name__ == "__main__":
+    main()
